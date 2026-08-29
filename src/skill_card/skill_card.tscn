@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://oll3sl06v0lv"]
+
+[ext_resource type="Script" uid="uid://cjir8p4vorja" path="res://src/skill_card/skill_card.gd" id="1_xwija"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3hcq"]
+size = Vector2(60, 24)
+
+[node name="SkillCard" type="Area2D" unique_id=1035689853]
+script = ExtResource("1_xwija")
+requires = "aaa"
+provides = "Ladder"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=197330127]
+shape = SubResource("RectangleShape2D_y3hcq")
+
+[node name="SkillLabel" type="Label" parent="CollisionShape2D" unique_id=1492396026]
+unique_name_in_owner = true
+offset_left = -18.0
+offset_right = 6.0
+offset_bottom = 14.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Push"
+
+[node name="ReqLabel" type="Label" parent="CollisionShape2D" unique_id=1742317083]
+unique_name_in_owner = true
+offset_left = -26.0
+offset_top = -8.0
+offset_right = 2.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(0.37036446, 0.3703645, 0.37036446, 1)
+theme_override_font_sizes/font_size = 8
+text = "Ladder"

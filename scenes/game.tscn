@@ -1,10 +1,25 @@
 [gd_scene format=3 uid="uid://yicge48108e0"]
 
+[ext_resource type="PackedScene" uid="uid://oll3sl06v0lv" path="res://src/skill_card/skill_card.tscn" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bkur5tdyvyg4u" path="res://src/platform/platform.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cuemnvwx21fxe" path="res://src/player/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/ladder/ladder.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=1286791302]
+
+[node name="SkillCard3" parent="." unique_id=1035689853 instance=ExtResource("1_lbhrr")]
+position = Vector2(296, 416)
+requires = ""
+provides = "Jump"
+
+[node name="SkillCard" parent="." unique_id=1509141401 instance=ExtResource("1_lbhrr")]
+position = Vector2(232, 560)
+requires = ""
+
+[node name="SkillCard2" parent="." unique_id=791901644 instance=ExtResource("1_lbhrr")]
+position = Vector2(376, 560)
+requires = "Ladder"
+provides = "Jump"
 
 [node name="Platform2" parent="." unique_id=661368424 instance=ExtResource("1_lnu2h")]
 position = Vector2(120, 448)

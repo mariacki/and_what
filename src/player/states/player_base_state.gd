@@ -23,3 +23,9 @@ func ladder_available(_player: Player, _ladder_pos: Vector2) -> void:
 
 func ladder_unavailable(_player: Player) -> void:
 	pass
+
+func skill_card_available(_player: Player, _skill_card: SkillCard) -> void:
+	pass
+
+func skill_card_unavailable(_player: Player) -> void:
+	pass

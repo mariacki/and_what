@@ -9,10 +9,13 @@ const JUMP_VELOCITY = -400.0
 @export var arrow: Node2D
 
 var state_machine: StateMachine = StateMachine.new()
+var skills: Array[SkillCard] = []
+
 
 var climb_dest: Vector2 = Vector2.ZERO
 var can_climb: bool = false
 
+var skill_card_pickup: SkillCard = null
 
 func _ready() -> void:
 	z_index = Units.LAYER_PLAYER
@@ -48,6 +51,12 @@ func ladder_available(pos: Vector2) -> void:
 
 func ladder_unavailable(_name: String) -> void:
 	_current_state().ladder_unavailable(self)
+
+func skill_card_available(skill: SkillCard) -> void:
+	_current_state().skill_card_available(self, skill)
+
+func skill_card_unavailable() -> void:
+	_current_state().skill_card_unavailable(self)
 
 
 func _update_animations(direction: float) -> void:
