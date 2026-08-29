@@ -3,10 +3,10 @@
 - [x] Create state machine for the player
 - [x] Create skill cards 
 - [x] Check is skill is enabled
+- [ ] Implement jumping
 - [ ] Create and enum for skills
 - [ ] Add ropes 
 - [ ] Implement push
-- [ ] Implement jumping
 - [ ] Main Menu 
 - [ ] Tutorial 1 - single skill
 - [ ] Tutorial 2 - skill replacement
