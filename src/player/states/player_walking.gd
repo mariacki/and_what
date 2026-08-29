@@ -1,6 +1,7 @@
 class_name PlayerWalking extends PlayerBaseState
 
 func _exit(player: Player) -> void:
+	player.can_climb = false
 	player.arrow.visible = false
 	player.animation_player.play("idle")
 

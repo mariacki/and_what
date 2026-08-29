@@ -26,3 +26,8 @@ drag_vertical_enabled = true
 z_index = 100
 position = Vector2(128, 448)
 number_of_segments = 7
+
+[node name="Ladder2" parent="." unique_id=1825102335 instance=ExtResource("2_yqjtg")]
+z_index = 100
+position = Vector2(240, 448)
+number_of_segments = 3
