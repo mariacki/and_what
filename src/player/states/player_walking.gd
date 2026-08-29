@@ -73,6 +73,7 @@ func _pickup_card(player: Player) -> void:
 
 	player.skill_card_pickup.visible = false
 	player.skill_card_pickup = null
+	player.skills_updated.emit(player.skills)
 
 
 func _can_climb(player: Player) -> bool:

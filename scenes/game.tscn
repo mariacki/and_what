@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bkur5tdyvyg4u" path="res://src/platform/platform.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cuemnvwx21fxe" path="res://src/player/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/ladder/ladder.tscn" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://glcpviwhb7o5" path="res://src/overlay.gd" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=1286791302]
 
@@ -50,3 +51,23 @@ number_of_segments = 7
 z_index = 100
 position = Vector2(240, 448)
 number_of_segments = 3
+
+[node name="Ui" type="CanvasLayer" parent="." unique_id=1836440554]
+script = ExtResource("5_iywne")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui" unique_id=929796039]
+unique_name_in_owner = true
+offset_right = 88.0
+offset_bottom = 200.0
+
+[node name="Label" type="Label" parent="Ui/VBoxContainer" unique_id=429055467]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+theme_override_font_sizes/font_size = 7
+text = "Skills:"
+
+[node name="Container" type="VBoxContainer" parent="Ui/VBoxContainer" unique_id=1241084695]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="skills_updated" from="Player" to="Ui" method="skills_updated"]

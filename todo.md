@@ -3,6 +3,7 @@
 - [x] Create state machine for the player
 - [x] Create skill cards 
 - [x] Check is skill is enabled
+- [x] Implement overlay with current skills
 - [ ] Implement jumping
 - [ ] Create and enum for skills
 - [ ] Add ropes 
