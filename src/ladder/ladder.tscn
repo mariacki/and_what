@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b27xalgvh432k"]
+
+[ext_resource type="Script" uid="uid://cugj2linkrdxn" path="res://src/ladder/ladder.gd" id="1_cjowv"]
+[ext_resource type="Texture2D" uid="uid://cjahiacjm31s3" path="res://texture/ladder_top.png" id="1_jg0ny"]
+[ext_resource type="Texture2D" uid="uid://67dtifkif41o" path="res://texture/ladder_middle.png" id="2_cjowv"]
+[ext_resource type="Script" uid="uid://c6qffbqoh7euy" path="res://src/components/repeatable/repeatable.gd" id="2_dfxoj"]
+[ext_resource type="Texture2D" uid="uid://bw6jmr0w5wixa" path="res://texture/ladder_bottom.png" id="3_dfxoj"]
+[ext_resource type="Script" uid="uid://ddv6ed70sikt8" path="res://src/components/repeatable/repeatable_segment.gd" id="4_kn724"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p6nn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_751gj"]
+
+[node name="Ladder" type="Node2D" unique_id=1825102335]
+script = ExtResource("1_cjowv")
+
+[node name="Repeatable" type="Node2D" parent="." unique_id=58516107]
+unique_name_in_owner = true
+script = ExtResource("2_dfxoj")
+metadata/_custom_type_script = "uid://c6qffbqoh7euy"
+
+[node name="Bottom" type="Sprite2D" parent="Repeatable" unique_id=1435871046]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, 32)
+texture = ExtResource("3_dfxoj")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("4_kn724")
+type = 2
+metadata/_custom_type_script = "uid://ddv6ed70sikt8"
+
+[node name="Middle" type="Sprite2D" parent="Repeatable" unique_id=1625435491]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, 16)
+texture = ExtResource("2_cjowv")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("4_kn724")
+type = 1
+metadata/_custom_type_script = "uid://ddv6ed70sikt8"
+
+[node name="Top" type="Sprite2D" parent="Repeatable" unique_id=897920524]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("1_jg0ny")
+script = ExtResource("4_kn724")
+metadata/_custom_type_script = "uid://ddv6ed70sikt8"
+
+[node name="TopTrigger" type="Area2D" parent="." unique_id=1721290718]
+position = Vector2(0, -8)
+
+[node name="TopShape" type="CollisionShape2D" parent="TopTrigger" unique_id=408443890]
+unique_name_in_owner = true
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_0p6nn")
+
+[node name="BottomTrigger" type="Area2D" parent="." unique_id=1515336050]
+position = Vector2(0, 40)
+
+[node name="BottomShape" type="CollisionShape2D" parent="BottomTrigger" unique_id=1183101453]
+unique_name_in_owner = true
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_751gj")

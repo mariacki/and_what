@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://yicge48108e0"]
+
+[ext_resource type="PackedScene" uid="uid://bkur5tdyvyg4u" path="res://src/platform/platform.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://cuemnvwx21fxe" path="res://src/player/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/ladder/ladder.tscn" id="2_yqjtg"]
+
+[node name="Game" type="Node2D" unique_id=1286791302]
+
+[node name="Platform2" parent="." unique_id=661368424 instance=ExtResource("1_lnu2h")]
+position = Vector2(120, 448)
+number_of_segments = 12
+
+[node name="Platform" parent="." unique_id=1732639023 instance=ExtResource("1_lnu2h")]
+position = Vector2(72, 584)
+number_of_segments = 21
+
+[node name="Player" parent="." unique_id=101684812 instance=ExtResource("1_uwrxv")]
+position = Vector2(80, 544)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1768085367]
+position = Vector2(8, 0)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Ladder" parent="." unique_id=1388910834 instance=ExtResource("2_yqjtg")]
+z_index = 100
+position = Vector2(128, 448)
+number_of_segments = 7
