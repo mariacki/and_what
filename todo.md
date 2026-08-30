@@ -4,8 +4,11 @@
 - [x] Create skill cards 
 - [x] Check is skill is enabled
 - [x] Implement overlay with current skills
-- [ ] Implement jumping
-- [ ] Create and enum for skills
+- [X] Implement jumping
+- [ ] Refactor code
+  - [ ] Create enum for skills 
+  - [ ] Change the way for detecting object to Player instpection
+  - [ ] Move the animation related code to animations component
 - [ ] Add ropes 
 - [ ] Implement push
 - [ ] Main Menu 

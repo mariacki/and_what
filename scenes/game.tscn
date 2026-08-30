@@ -13,7 +13,7 @@ position = Vector2(376, 448)
 number_of_segments = 5
 
 [node name="SkillCard3" parent="." unique_id=1035689853 instance=ExtResource("1_lbhrr")]
-position = Vector2(296, 416)
+position = Vector2(184, 424)
 requires = ""
 provides = "Jump"
 

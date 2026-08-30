@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 signal skills_updated(skills: Array[SkillCard])
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
 
@@ -10,14 +10,19 @@ const JUMP_VELOCITY = -400.0
 @export var sprite: Sprite2D
 @export var arrow: Node2D
 
+@export var jump_length: float = 100
+
 var state_machine: StateMachine = StateMachine.new()
 var skills: Array[SkillCard] = []
 
 
-var climb_dest: Vector2 = Vector2.ZERO
+var move_dest: Vector2 = Vector2.ZERO
+var moving_animation: String = "idle"
 var can_climb: bool = false
 
 var skill_card_pickup: SkillCard = null
+
+@onready var detection_area: DetectionArea = %DetectionArea
 
 func _ready() -> void:
 	z_index = Units.LAYER_PLAYER

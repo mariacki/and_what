@@ -7,16 +7,24 @@ func _exit(player: Player) -> void:
 	player.skill_card_pickup = null
 
 func physics_process(player: Player, _delta: float) -> void:
+	if not player.is_on_floor():
+		player.state_machine.switch_state(PlayerFalling, player)
+
+		return
+
 	player.apply_vertical_velocity()
 	player.apply_gravity()
 	player.move_and_slide()
 
 	player.arrow.hide()
+	player.arrow.position = Vector2.ZERO
+	player.moving_animation = "idle"
+
 	if _can_climb(player):
 		player.arrow.show()
-		player.arrow.look_at(player.climb_dest)
+		player.arrow.look_at(player.move_dest)
 		if Input.is_action_just_pressed("action"):
-			player.global_position.x = player.climb_dest.x
+			player.global_position.x = player.move_dest.x
 			player.state_machine.switch_state(PlayerClimbing, player)
 			return
 
@@ -25,14 +33,33 @@ func physics_process(player: Player, _delta: float) -> void:
 		player.arrow.look_at(player.skill_card_pickup.global_position)
 		if Input.is_action_just_pressed("action"):
 			_pickup_card(player)
+			return
+
+	var edge = player.detection_area.edge_find_first()
+	if edge and edge.jump_direction != Vector2.ZERO and _has_jump_skill(player):
+		player.arrow.show()
+		player.arrow.position.x += edge.jump_direction.x * player.jump_length
+		player.arrow.position.y -= Units.UNIT
+		player.arrow.rotation_degrees = 90
+
+		if Input.is_action_just_released("action"):
+			player.move_dest = player.global_position + edge.jump_direction * player.jump_length
+			player.moving_animation = "jump"
+			player.state_machine.switch_state(PlayerClimbing, player)
+
+			return
 
 
-	if not player.is_on_floor():
-		player.state_machine.switch_state(PlayerFalling, player)
+func _has_jump_skill(player: Player) -> bool:
+	for skill in player.skills:
+		if skill.provides == "Jump":
+			return true
+
+	return false
 
 func ladder_available(player: Player, climb_dest: Vector2) -> void:
 	player.can_climb = true
-	player.climb_dest = climb_dest
+	player.move_dest = climb_dest
 
 func ladder_unavailable(player: Player) -> void:
 	player.can_climb = false

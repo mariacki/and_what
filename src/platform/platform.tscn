@@ -6,9 +6,16 @@
 [ext_resource type="Script" uid="uid://ddv6ed70sikt8" path="res://src/components/repeatable/repeatable_segment.gd" id="2_ews3p"]
 [ext_resource type="Texture2D" uid="uid://bicyp38uiwkyk" path="res://texture/platform_middle.png" id="4_nwkpn"]
 [ext_resource type="Texture2D" uid="uid://6x05lu4gdn85" path="res://texture/platform_right.png" id="5_1lxnx"]
+[ext_resource type="Script" uid="uid://ewtagvwnrgiq" path="res://src/platform/edge.gd" id="5_mmh0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y3hcq"]
-size = Vector2(360, 16)
+size = Vector2(16, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p6nn"]
+size = Vector2(16, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isrtf"]
+size = Vector2(40, 16)
 
 [node name="Platform" type="StaticBody2D" unique_id=661368424]
 script = ExtResource("1_nwkpn")
@@ -23,9 +30,18 @@ texture = ExtResource("2_40toj")
 script = ExtResource("2_ews3p")
 metadata/_custom_type_script = "uid://ddv6ed70sikt8"
 
+[node name="Area2D" type="Area2D" parent="Repeatable/Left" unique_id=1841873864]
+script = ExtResource("5_mmh0t")
+jump_direction = Vector2(-1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Repeatable/Left/Area2D" unique_id=1644165955]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_y3hcq")
+
 [node name="Middle" type="Sprite2D" parent="Repeatable" unique_id=17691675]
 texture_filter = 1
-position = Vector2(16, 0)
+texture_repeat = 2
+position = Vector2(8, 0)
 texture = ExtResource("4_nwkpn")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
@@ -35,12 +51,20 @@ metadata/_custom_type_script = "uid://ddv6ed70sikt8"
 
 [node name="Right" type="Sprite2D" parent="Repeatable" unique_id=1002002187]
 texture_filter = 1
-position = Vector2(31, 0)
+position = Vector2(24, 0)
 texture = ExtResource("5_1lxnx")
 script = ExtResource("2_ews3p")
 type = 2
 metadata/_custom_type_script = "uid://ddv6ed70sikt8"
 
+[node name="Area2D" type="Area2D" parent="Repeatable/Right" unique_id=1129947973]
+script = ExtResource("5_mmh0t")
+jump_direction = Vector2(1, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Repeatable/Right/Area2D" unique_id=1274915707]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_0p6nn")
+
 [node name="Floor" type="CollisionShape2D" parent="." unique_id=1236968060]
-position = Vector2(16, 0)
-shape = SubResource("RectangleShape2D_y3hcq")
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_isrtf")

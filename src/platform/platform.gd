@@ -1,5 +1,5 @@
 @tool
-extends StaticBody2D
+class_name Platform extends StaticBody2D
 
 @onready var platform: CollisionShape2D = $Floor
 @onready var repeatable: Repeatable = $Repeatable
