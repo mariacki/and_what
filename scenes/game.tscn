@@ -15,16 +15,17 @@ number_of_segments = 5
 [node name="SkillCard3" parent="." unique_id=1035689853 instance=ExtResource("1_lbhrr")]
 position = Vector2(184, 424)
 requires = ""
-provides = "Jump"
+provides = 3
 
 [node name="SkillCard" parent="." unique_id=1509141401 instance=ExtResource("1_lbhrr")]
 position = Vector2(232, 560)
 requires = ""
+provides = 1
 
 [node name="SkillCard2" parent="." unique_id=791901644 instance=ExtResource("1_lbhrr")]
 position = Vector2(376, 560)
-requires = "Ladder"
-provides = "Jump"
+requires = 1
+provides = 3
 
 [node name="Platform2" parent="." unique_id=1914121879 instance=ExtResource("1_lnu2h")]
 position = Vector2(120, 448)

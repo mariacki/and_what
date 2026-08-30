@@ -8,7 +8,7 @@ func skills_updated(skills: Array[SkillCard]):
 
 	for skill in skills:
 		var label = Label.new()
-		label.text = "[%s] %s" % [skill.requires, skill.provides]
+		label.text = "[%s] %s" % [skill.requires_string(), skill.provides_string()]
 		label.add_theme_color_override("font_color", Color.BLACK)
 		label.add_theme_font_size_override("font_size", 8)
 		item_list.add_child(label)

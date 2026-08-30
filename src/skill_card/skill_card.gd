@@ -1,15 +1,23 @@
 @tool
 class_name SkillCard extends Area2D
 
-@onready var req_label: Label = %ReqLabel
+enum Skill {
+	NOTHING,
+	LADDER,
+	ROPE,
+	JUMP,
+	PUSH,
+}
+
+@onready var requires_label: Label = %ReqLabel
 @onready var provides_label: Label = %SkillLabel
 
-@export var requires: String = "":
+@export var requires: Skill:
 	set(value):
 		requires = value
 		_update_requires_label()
 
-@export var provides: String = "":
+@export var provides: Skill:
 	set(value):
 		provides = value
 		_update_provides_label()
@@ -17,11 +25,11 @@ class_name SkillCard extends Area2D
 
 
 func _ready() -> void:
-	assert(req_label != null, "null requirement label")
+	assert(requires_label != null, "null requirement label")
 	assert(provides_label != null, "null provides label")
 
-	req_label.text = requires
-	provides_label.text = provides
+	requires_label.text = get_label_text(requires)
+	provides_label.text = get_label_text(provides)
 
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
@@ -40,14 +48,29 @@ func _body_exited(body: Node2D) -> void:
 
 
 func _update_requires_label() -> void:
-	if not req_label:
+	if not requires_label:
 		return
 
-	req_label.text = requires
+	requires_label.text = get_label_text(requires)
 
 func _update_provides_label() -> void:
 	if not provides_label:
 		return
 
 	print("updating label")
-	provides_label.text = provides
+	provides_label.text = get_label_text(provides)
+
+func requires_string() -> String:
+	return get_label_text(requires)
+
+func provides_string() -> String:
+	return get_label_text(provides)
+
+func get_label_text(type: Skill) -> String:
+	match type:
+		Skill.LADDER: return "Ladder"
+		Skill.ROPE: return "Rope"
+		Skill.JUMP: return "Jump"
+		Skill.PUSH: return "Push"
+
+	return ""

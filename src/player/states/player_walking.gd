@@ -52,7 +52,7 @@ func physics_process(player: Player, _delta: float) -> void:
 
 func _has_jump_skill(player: Player) -> bool:
 	for skill in player.skills:
-		if skill.provides == "Jump":
+		if skill.provides == SkillCard.Skill.JUMP:
 			return true
 
 	return false
@@ -82,7 +82,7 @@ func _can_pickup_card(player: Player) -> bool:
 	if player.skills.is_empty():
 		return true
 
-	if player.skill_card_pickup.requires == "":
+	if player.skill_card_pickup.requires == SkillCard.Skill.NOTHING:
 		return true
 
 	var last_skill = player.skills[player.skills.size() - 1]
@@ -90,7 +90,7 @@ func _can_pickup_card(player: Player) -> bool:
 	return last_skill.provides == player.skill_card_pickup.requires
 
 func _pickup_card(player: Player) -> void:
-	if player.skill_card_pickup.requires == "":
+	if player.skill_card_pickup.requires == SkillCard.Skill.NOTHING:
 		for skill in player.skills:
 			skill.show()
 
@@ -108,7 +108,7 @@ func _can_climb(player: Player) -> bool:
 		return false
 
 	for skill in player.skills:
-		if skill.provides == "Ladder":
+		if skill.provides == SkillCard.Skill.LADDER:
 			return true
 
 	return false

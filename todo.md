@@ -6,11 +6,13 @@
 - [x] Implement overlay with current skills
 - [X] Implement jumping
 - [ ] Refactor code
-  - [ ] Create enum for skills 
+  - [x] Create enum for skills 
   - [ ] Change the way for detecting object to Player instpection
   - [ ] Move the animation related code to animations component
 - [ ] Add ropes 
 - [ ] Implement push
+- [ ] Implement level finish point 
+- [ ] Implement level manager
 - [ ] Main Menu 
 - [ ] Tutorial 1 - single skill
 - [ ] Tutorial 2 - skill replacement
@@ -18,3 +20,4 @@
 
 ### Ideas:
 - [ ] Lifts for skills
+- [ ] Selecting target interactive object when overlapping

@@ -2,8 +2,10 @@ class_name Player extends CharacterBody2D
 
 signal skills_updated(skills: Array[SkillCard])
 
+
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
+
 
 
 @export var animation_player: AnimationPlayer
