@@ -2,7 +2,7 @@ class_name PlayerInTransport
 extends PlayerBaseState
 
 func _enter(player: Player) -> void:
-	player.animation_player.play(player.moving_animation)
+	player.visuals.set_animation(player.moving_animation)
 
 
 func physics_process(player: Player, _delta: float) -> void:

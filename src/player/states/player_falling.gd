@@ -2,7 +2,7 @@ class_name PlayerFalling
 extends PlayerBaseState
 
 func _enter(player: Player) -> void:
-	player.animation_player.play("idle")
+	player.visuals.set_animation(PlayerVisuals.ANIM_IDLE)
 
 
 func physics_process(player: Player, _delta: float) -> void:

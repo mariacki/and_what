@@ -3,7 +3,7 @@ class_name PlayerWalking extends PlayerBaseState
 func _exit(player: Player) -> void:
 	player.can_climb = false
 	player.arrow.visible = false
-	player.animation_player.play("idle")
+	player.visuals.set_animation(PlayerVisuals.ANIM_IDLE)
 	player.skill_card_pickup = null
 
 func physics_process(player: Player, _delta: float) -> void:
@@ -64,7 +64,7 @@ func _handle_edge(player: Player, edge: Edge) -> void:
 		return
 
 	player.move_destination = player.global_position + edge.jump_direction * player.jump_length
-	player.moving_animation = "jump"
+	player.moving_animation = PlayerVisuals.ANIM_JUMP
 
 	player.state_machine.switch_state(PlayerInTransport, player)
 
@@ -78,7 +78,7 @@ func _handle_transport_point(player: Player, transport_point: TransportPoint) ->
 		return
 
 	player.move_destination = transport_point.destination_point.global_position
-	player.moving_animation = "idle"
+	player.moving_animation = PlayerVisuals.ANIM_IDLE
 	player.global_position.x = transport_point.destination_point.global_position.x
 
 	player.state_machine.switch_state(PlayerInTransport, player)

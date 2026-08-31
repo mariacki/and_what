@@ -5,10 +5,10 @@
 - [x] Check is skill is enabled
 - [x] Implement overlay with current skills
 - [X] Implement jumping
-- [ ] Refactor code
+- [X] Refactor code
   - [x] Create enum for skills 
   - [x] Change the way for detecting object to Player instpection
-  - [ ] Move the animation related code to animations component
+  - [x] Move the animation related code to animations component
 - [x] Add ropes 
 - [ ] Implement push
 - [ ] Implement level finish point 

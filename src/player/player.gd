@@ -5,8 +5,7 @@ signal skills_updated(skills: Array[SkillCard])
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
 
-@export var animation_player: AnimationPlayer
-@export var sprite: Sprite2D
+@onready var visuals: PlayerVisuals = %Visuals
 @export var arrow: Node2D
 
 @export var jump_length: float = 100
@@ -24,7 +23,6 @@ var skill_card_pickup: SkillCard = null
 
 func _ready() -> void:
 	z_index = Units.LAYER_PLAYER
-	animation_player.play("move")
 
 	state_machine.register_state(PlayerWalking, PlayerWalking.new())
 	state_machine.register_state(PlayerInTransport, PlayerInTransport.new())
@@ -50,27 +48,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_animations(direction: float) -> void:
-	var animation = _get_walking_animation(direction)
-
-	if animation_player.current_animation == animation:
-		return
-
-	animation_player.play(animation)
-
-	if direction < 0:
-		sprite.flip_h = true
-	else:
-		sprite.flip_h = false
-
-
-func _get_walking_animation(direction: float) -> StringName:
-	if direction == 0:
-		return "idle"
-
-	if direction < 0:
-		return "move_left"
-
-	return "move_right"
+	visuals.moving(direction)
 
 
 func _current_state() -> PlayerBaseState:
