@@ -7,7 +7,7 @@
 - [X] Implement jumping
 - [ ] Refactor code
   - [x] Create enum for skills 
-  - [ ] Change the way for detecting object to Player instpection
+  - [x] Change the way for detecting object to Player instpection
   - [ ] Move the animation related code to animations component
 - [ ] Add ropes 
 - [ ] Implement push

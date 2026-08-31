@@ -23,28 +23,12 @@ enum Skill {
 		_update_provides_label()
 
 
-
 func _ready() -> void:
 	assert(requires_label != null, "null requirement label")
 	assert(provides_label != null, "null provides label")
 
 	requires_label.text = get_label_text(requires)
 	provides_label.text = get_label_text(provides)
-
-	body_entered.connect(_body_entered)
-	body_exited.connect(_body_exited)
-
-
-func _body_entered(body: Node2D) -> void:
-	if body is Player:
-		print("player entered")
-		body.skill_card_available(self)
-
-
-func _body_exited(body: Node2D) -> void:
-	if body is Player:
-		print("player exited")
-		body.skill_card_unavailable()
 
 
 func _update_requires_label() -> void:
@@ -53,6 +37,7 @@ func _update_requires_label() -> void:
 
 	requires_label.text = get_label_text(requires)
 
+
 func _update_provides_label() -> void:
 	if not provides_label:
 		return
@@ -60,11 +45,14 @@ func _update_provides_label() -> void:
 	print("updating label")
 	provides_label.text = get_label_text(provides)
 
+
 func requires_string() -> String:
 	return get_label_text(requires)
 
+
 func provides_string() -> String:
 	return get_label_text(provides)
+
 
 func get_label_text(type: Skill) -> String:
 	match type:

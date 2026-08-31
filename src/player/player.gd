@@ -2,11 +2,8 @@ class_name Player extends CharacterBody2D
 
 signal skills_updated(skills: Array[SkillCard])
 
-
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
-
-
 
 @export var animation_player: AnimationPlayer
 @export var sprite: Sprite2D
@@ -17,8 +14,7 @@ const JUMP_VELOCITY = -400.0
 var state_machine: StateMachine = StateMachine.new()
 var skills: Array[SkillCard] = []
 
-
-var move_dest: Vector2 = Vector2.ZERO
+var move_destination: Vector2 = Vector2.ZERO
 var moving_animation: String = "idle"
 var can_climb: bool = false
 
@@ -31,7 +27,7 @@ func _ready() -> void:
 	animation_player.play("move")
 
 	state_machine.register_state(PlayerWalking, PlayerWalking.new())
-	state_machine.register_state(PlayerClimbing, PlayerClimbing.new())
+	state_machine.register_state(PlayerInTransport, PlayerInTransport.new())
 	state_machine.register_state(PlayerFalling, PlayerFalling.new())
 
 	state_machine.switch_state(PlayerWalking, self)
@@ -49,23 +45,8 @@ func apply_gravity() -> void:
 	if not is_on_floor():
 		velocity.y = 200
 
-func _current_state() -> PlayerBaseState:
-	return state_machine.current as PlayerBaseState
-
 func _physics_process(delta: float) -> void:
 	_current_state().physics_process(self, delta)
-
-func ladder_available(pos: Vector2) -> void:
-	_current_state().ladder_available(self, pos)
-
-func ladder_unavailable(_name: String) -> void:
-	_current_state().ladder_unavailable(self)
-
-func skill_card_available(skill: SkillCard) -> void:
-	_current_state().skill_card_available(self, skill)
-
-func skill_card_unavailable() -> void:
-	_current_state().skill_card_unavailable(self)
 
 
 func _update_animations(direction: float) -> void:
@@ -90,3 +71,15 @@ func _get_walking_animation(direction: float) -> StringName:
 		return "move_left"
 
 	return "move_right"
+
+
+func _current_state() -> PlayerBaseState:
+	return state_machine.current as PlayerBaseState
+
+
+func has_skill(skill_id: SkillCard.Skill) -> bool:
+	for skill in skills:
+		if skill.provides == skill_id:
+			return true
+
+	return false

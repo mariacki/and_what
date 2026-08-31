@@ -16,99 +16,107 @@ func physics_process(player: Player, _delta: float) -> void:
 	player.apply_gravity()
 	player.move_and_slide()
 
-	player.arrow.hide()
-	player.arrow.position = Vector2.ZERO
+	_handle_interactions(player)
+
+
+func _handle_interactions(player: Player) -> void:
+	arrow_reset(player)
+
+	for interactive in player.detection_area.get_overlapping_areas():
+		if interactive is SkillCard:
+			_handle_skill_card(player, interactive)
+			return
+
+		if interactive is TransportPoint:
+			_handle_transport_point(player, interactive)
+			return
+
+		if interactive is Edge:
+			_handle_edge(player, interactive)
+			return
+
+
+func _handle_skill_card(player: Player, card: SkillCard) -> void:
+	if not card.visible:
+		return
+
+	arrow_point_at(player, card.global_position)
+
+	if not Input.is_action_just_pressed("action"):
+		return
+
+	if not _inventory_can_place_card(player, card):
+		return
+
+	_inventory_place_card(player, card)
+
+
+func _handle_edge(player: Player, edge: Edge) -> void:
+	if edge.jump_direction == Vector2.ZERO:
+		return
+
+	if not player.has_skill(SkillCard.Skill.JUMP):
+		return
+
+	arrow_show_jump(player, edge)
+
+	if not Input.is_action_just_pressed("action"):
+		return
+
+	player.move_destination = player.global_position + edge.jump_direction * player.jump_length
+	player.moving_animation = "jump"
+
+	player.state_machine.switch_state(PlayerInTransport, player)
+
+func _handle_transport_point(player: Player, transport_point: TransportPoint) -> void:
+	if not player.has_skill(transport_point.required_skill):
+		return
+
+	arrow_point_at(player, transport_point.destination_point.global_position)
+
+	if not Input.is_action_just_pressed("action"):
+		return
+
+	player.move_destination = transport_point.destination_point.global_position
 	player.moving_animation = "idle"
+	player.global_position.x = transport_point.destination_point.global_position.x
 
-	if _can_climb(player):
-		player.arrow.show()
-		player.arrow.look_at(player.move_dest)
-		if Input.is_action_just_pressed("action"):
-			player.global_position.x = player.move_dest.x
-			player.state_machine.switch_state(PlayerClimbing, player)
-			return
+	player.state_machine.switch_state(PlayerInTransport, player)
 
-	if _can_pickup_card(player):
-		player.arrow.show()
-		player.arrow.look_at(player.skill_card_pickup.global_position)
-		if Input.is_action_just_pressed("action"):
-			_pickup_card(player)
-			return
-
-	var edge = player.detection_area.edge_find_first()
-	if edge and edge.jump_direction != Vector2.ZERO and _has_jump_skill(player):
-		player.arrow.show()
-		player.arrow.position.x += edge.jump_direction.x * player.jump_length
-		player.arrow.position.y -= Units.UNIT
-		player.arrow.rotation_degrees = 90
-
-		if Input.is_action_just_released("action"):
-			player.move_dest = player.global_position + edge.jump_direction * player.jump_length
-			player.moving_animation = "jump"
-			player.state_machine.switch_state(PlayerClimbing, player)
-
-			return
-
-
-func _has_jump_skill(player: Player) -> bool:
-	for skill in player.skills:
-		if skill.provides == SkillCard.Skill.JUMP:
-			return true
-
-	return false
-
-func ladder_available(player: Player, climb_dest: Vector2) -> void:
-	player.can_climb = true
-	player.move_dest = climb_dest
-
-func ladder_unavailable(player: Player) -> void:
-	player.can_climb = false
-
-func skill_card_available(player: Player, skill_card: SkillCard) -> void:
-	player.skill_card_pickup = skill_card
-
-func skill_card_unavailable(player: Player) -> void:
-	player.skill_card_pickup = null
-
-	player.arrow.visible = false
-
-func _can_pickup_card(player: Player) -> bool:
-	if not player.skill_card_pickup:
+func _inventory_can_place_card(player: Player, card: SkillCard) -> bool:
+	if not card.visible:
 		return false
 
-	if not player.skill_card_pickup.visible:
-		return false
-
-	if player.skills.is_empty():
-		return true
-
-	if player.skill_card_pickup.requires == SkillCard.Skill.NOTHING:
+	if card.requires == SkillCard.Skill.NOTHING:
 		return true
 
 	var last_skill = player.skills[player.skills.size() - 1]
+	return last_skill.provides == card.requires
 
-	return last_skill.provides == player.skill_card_pickup.requires
-
-func _pickup_card(player: Player) -> void:
-	if player.skill_card_pickup.requires == SkillCard.Skill.NOTHING:
+func _inventory_place_card(player: Player, card: SkillCard) -> void:
+	if card.requires == SkillCard.Skill.NOTHING:
 		for skill in player.skills:
 			skill.show()
 
-		player.skills = [player.skill_card_pickup]
+		player.skills = [card]
 	else:
-		player.skills.append(player.skill_card_pickup)
+		player.skills.append(card)
 
-	player.skill_card_pickup.visible = false
-	player.skill_card_pickup = null
+	card.visible = false
 	player.skills_updated.emit(player.skills)
 
 
-func _can_climb(player: Player) -> bool:
-	if not player.can_climb:
-		return false
+func arrow_point_at(player: Player, position: Vector2) -> void:
+	player.arrow.show()
+	player.arrow.look_at(position)
 
-	for skill in player.skills:
-		if skill.provides == SkillCard.Skill.LADDER:
-			return true
+func arrow_show_jump(player: Player, edge: Edge) -> void:
+	player.arrow.show()
+	player.arrow.position.x += edge.jump_direction.x * player.jump_length
+	player.arrow.position.y -= Units.UNIT
+	player.arrow.rotation_degrees = 90
 
-	return false
+func arrow_reset(player: Player) -> void:
+	player.arrow.hide()
+	player.arrow.position = Vector2.ZERO
+	player.moving_animation = "idle"

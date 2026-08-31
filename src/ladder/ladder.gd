@@ -29,63 +29,7 @@ func _ready() -> void:
 
 
 	z_index = Units.LAYER_INTERACTIVES
-
-	top_trigger.body_entered.connect(_on_top_enter)
-	top_trigger.body_exited.connect(_on_top_exit)
-
-	bottom_trigger.body_entered.connect(_on_bottom_enter)
-	bottom_trigger.body_exited.connect(_on_bottom_exit)
-
-
 	_update()
-
-func _physics_process(_delta: float) -> void:
-	_update_availability()
-
-func _update_availability() -> void:
-	var player = null
-
-	player = _find_player_in_trigger(top_trigger)
-	if player != null:
-		player.ladder_available(bottom_trigger.global_position)
-
-	player = _find_player_in_trigger(bottom_trigger)
-	if player != null:
-		player.ladder_available(top_trigger.global_position)
-
-
-
-func _find_player_in_trigger(trigger: Area2D) -> Player:
-	for body in trigger.get_overlapping_bodies():
-		if body is Player:
-			return body
-
-	return null
-
-
-func _on_top_enter(body: Node2D) -> void:
-	print("top enered")
-	if body is Player:
-		body.ladder_available(bottom_trigger.global_position)
-
-func _on_top_exit(body: Node2D) -> void:
-	if body is Player:
-		if body.global_position.distance_squared_to(bottom_trigger.global_position ) < Units.UNIT:
-			return
-
-		body.ladder_unavailable("top ladder unavailable")
-
-func _on_bottom_enter(body: Node2D) -> void:
-	if body is Player:
-		body.ladder_available(top_trigger.global_position)
-
-func _on_bottom_exit(body: Node2D) -> void:
-	if body is Player:
-		if body.global_position.distance_squared_to(top_trigger.global_position) <= 0.01:
-			return
-
-		body.ladder_unavailable("bottom trigger exit")
-
 
 func _update() -> void:
 	if not repeatable:
@@ -95,3 +39,9 @@ func _update() -> void:
 	repeatable.number_of_segments = number_of_segments
 
 	bottom_trigger.position = repeatable.last_segment_pos() + Vector2(0, Units.HALF)
+
+func get_destination(player: Player) -> Vector2:
+	if player in top_trigger.get_overlapping_bodies():
+		return bottom_trigger.global_position
+
+	return top_trigger.global_position

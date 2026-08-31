@@ -1,4 +1,4 @@
-class_name PlayerClimbing
+class_name PlayerInTransport
 extends PlayerBaseState
 
 func _enter(player: Player) -> void:
@@ -6,7 +6,7 @@ func _enter(player: Player) -> void:
 
 
 func physics_process(player: Player, _delta: float) -> void:
-	player.global_position = player.global_position.move_toward(player.move_dest, _delta * Player.SPEED)
+	player.global_position = player.global_position.move_toward(player.move_destination, _delta * Player.SPEED)
 
-	if player.global_position.distance_squared_to(player.move_dest) <= 0.01:
+	if player.global_position.distance_squared_to(player.move_destination) <= 0.01:
 		player.state_machine.switch_state(PlayerWalking, player)
