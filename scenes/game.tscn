@@ -2,11 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://oll3sl06v0lv" path="res://src/skill_card/skill_card.tscn" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bkur5tdyvyg4u" path="res://src/platform/platform.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://cqpfkx3gy0qq7" path="res://src/transport/rope.tscn" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cuemnvwx21fxe" path="res://src/player/player.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/ladder/ladder.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/transport/ladder.tscn" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://glcpviwhb7o5" path="res://src/overlay.gd" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=1286791302]
+
+[node name="Rope" parent="." unique_id=1825102335 instance=ExtResource("1_p57ef")]
+position = Vector2(559, 302)
+number_of_segments = 4
 
 [node name="Platform3" parent="." unique_id=661368424 instance=ExtResource("1_lnu2h")]
 position = Vector2(184, 304)
@@ -18,9 +23,14 @@ requires = 0
 provides = 3
 
 [node name="SkillCard" parent="." unique_id=1509141401 instance=ExtResource("1_lbhrr")]
-position = Vector2(232, 280)
+position = Vector2(502, 385)
 requires = 0
 provides = 1
+
+[node name="SkillCard2" parent="." unique_id=504712972 instance=ExtResource("1_lbhrr")]
+position = Vector2(510, 279)
+requires = 0
+provides = 2
 
 [node name="Platform9" parent="." unique_id=655066593 instance=ExtResource("1_lnu2h")]
 position = Vector2(664, 224)
@@ -37,6 +47,10 @@ number_of_segments = 10
 [node name="Platform7" parent="." unique_id=1708893482 instance=ExtResource("1_lnu2h")]
 position = Vector2(-192, 232)
 number_of_segments = 10
+
+[node name="Platform8" parent="." unique_id=583603668 instance=ExtResource("1_lnu2h")]
+position = Vector2(304, 414)
+number_of_segments = 18
 
 [node name="Platform4" parent="." unique_id=205037669 instance=ExtResource("1_lnu2h")]
 position = Vector2(296, 232)
@@ -61,6 +75,10 @@ number_of_segments = 3
 
 [node name="Ladder4" parent="." unique_id=1892279685 instance=ExtResource("2_yqjtg")]
 position = Vector2(432, 112)
+number_of_segments = 6
+
+[node name="Ladder5" parent="." unique_id=376871732 instance=ExtResource("2_yqjtg")]
+position = Vector2(389, 294)
 number_of_segments = 6
 
 [node name="Ladder3" parent="." unique_id=595869846 instance=ExtResource("2_yqjtg")]

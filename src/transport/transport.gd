@@ -1,20 +1,9 @@
 @tool
-class_name Ladder extends Node2D
+class_name Transport extends Node2D
 
-enum LadderDirection {
-	UP,
-	DOWN,
-}
-
-@onready var top_trigger: Area2D = $TopTrigger
-@onready var bottom_trigger: Area2D = $BottomTrigger
-
+@onready var top_trigger: TransportPoint = $TopTrigger
+@onready var bottom_trigger: TransportPoint = $BottomTrigger
 @onready var repeatable: Repeatable = $Repeatable
-
-@export var dir: LadderDirection = LadderDirection.UP:
-	set(value):
-		dir = value
-		_update()
 
 @export var number_of_segments: int = 1:
 	set(value):

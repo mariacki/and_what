@@ -9,7 +9,7 @@
   - [x] Create enum for skills 
   - [x] Change the way for detecting object to Player instpection
   - [ ] Move the animation related code to animations component
-- [ ] Add ropes 
+- [x] Add ropes 
 - [ ] Implement push
 - [ ] Implement level finish point 
 - [ ] Implement level manager
