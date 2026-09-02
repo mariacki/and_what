@@ -37,7 +37,7 @@ func _handle_interactions(player: Player) -> void:
 
 
 func _handle_skill_card(player: Player, card: SkillCard) -> void:
-	if not card.visible:
+	if not _inventory_can_place_card(player, card):
 		return
 
 	arrow_point_at(player, card.global_position)
@@ -45,8 +45,6 @@ func _handle_skill_card(player: Player, card: SkillCard) -> void:
 	if not Input.is_action_just_pressed("action"):
 		return
 
-	if not _inventory_can_place_card(player, card):
-		return
 
 	_inventory_place_card(player, card)
 
@@ -89,6 +87,9 @@ func _inventory_can_place_card(player: Player, card: SkillCard) -> bool:
 
 	if card.requires == SkillCard.Skill.NOTHING:
 		return true
+
+	if player.skills.size() == 0:
+		return false
 
 	var last_skill = player.skills[player.skills.size() - 1]
 	return last_skill.provides == card.requires

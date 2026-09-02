@@ -1,4 +1,4 @@
-### TODO: 
+### PHASE1 - DEMO: 
 - [x] Solve the problem with events mismatch when exiting
 - [x] Create state machine for the player
 - [x] Create skill cards 
@@ -10,14 +10,22 @@
   - [x] Change the way for detecting object to Player instpection
   - [x] Move the animation related code to animations component
 - [x] Add ropes 
-- [ ] Implement push
 - [ ] Implement level finish point 
-- [ ] Implement level manager
+  - [ ] Level Finish Visuals
+  - [ ] Level Manager
+  - [ ] Level Reset
 - [ ] Main Menu 
 - [ ] Tutorial 1 - single skill
 - [ ] Tutorial 2 - skill replacement
 - [ ] Tutorial 3 - skill chainging
+- [ ] Implement push
+- [ ] Implement swimming
 
-### Ideas:
-- [ ] Lifts for skills
+### Ideas :
+- [ ] Lifs for skills
 - [ ] Selecting target interactive object when overlapping
+- [ ] Moving platforms
+- [ ] Lowering and raising the ropes
+- [ ] Jumps in different directions
+- [ ] Collect three exit cristals
+- [ ] Collectibles? - Maybe if they somehow not influence main mechanic? Like maybe just falling in the right place, shooting yourself in a right direction? Maybe some background cueues? Sound queues?
