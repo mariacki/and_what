@@ -40,6 +40,7 @@ func _handle_interactions(player: Player) -> void:
 			return
 
 
+
 func _handle_skill_card(player: Player, card: SkillCard) -> void:
 	if not _inventory_can_place_card(player, card):
 		return

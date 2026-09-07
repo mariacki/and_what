@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://duyq0nfq330a" path="res://src/game/game.gd" id="1_l80un"]
 [ext_resource type="PackedScene" uid="uid://crureb8tk77sq" path="res://src/game/overlay.tscn" id="1_qnjlk"]
-[ext_resource type="PackedScene" uid="uid://yicge48108e0" path="res://scenes/level_1.tscn" id="2_xptat"]
-[ext_resource type="PackedScene" uid="uid://dfyojkn36aeup" path="res://scenes/level_2.tscn" id="3_yarin"]
+[ext_resource type="PackedScene" uid="uid://yicge48108e0" path="res://src/levels/level_1.tscn" id="2_xptat"]
+[ext_resource type="PackedScene" uid="uid://dfyojkn36aeup" path="res://src/levels/level_2.tscn" id="3_yarin"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l80un"]
 font_size = 54
@@ -30,10 +30,10 @@ unique_name_in_owner = true
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.059
-offset_left = 437.0
-offset_top = 266.0
-offset_right = -434.0
-offset_bottom = -420.232
+offset_left = -16.0
+offset_top = -1.0
+offset_right = 77.0
+offset_bottom = 4.7680054
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.022468096, 0.2386665, 0.32392517, 0.78431374)
@@ -57,4 +57,57 @@ label_settings = SubResource("LabelSettings_l80un")
 layout_mode = 2
 text = "New Game"
 
+[node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=562334626]
+unique_name_in_owner = true
+visible = false
+
+[node name="Background" type="ColorRect" parent="UI/PauseMenu" unique_id=973807191]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.059
+offset_left = -77.0
+offset_top = -53.0
+offset_right = 28.0
+offset_bottom = 10.768005
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.022468096, 0.2386665, 0.32392517, 0.78431374)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/PauseMenu" unique_id=1753941912]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="UI/PauseMenu/CenterContainer" unique_id=1096489177]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PauseMenu/CenterContainer/HBoxContainer2" unique_id=658581738]
+layout_mode = 2
+text = "Pause....."
+label_settings = SubResource("LabelSettings_l80un")
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu/CenterContainer/HBoxContainer2" unique_id=1976430534]
+layout_mode = 2
+text = "Resume
+"
+
+[node name="Restart Level" type="Button" parent="UI/PauseMenu/CenterContainer/HBoxContainer2" unique_id=2029489459]
+layout_mode = 2
+text = "Restart Level
+"
+
+[node name="QuitToMainMenu" type="Button" parent="UI/PauseMenu/CenterContainer/HBoxContainer2" unique_id=1181244468]
+layout_mode = 2
+text = "Quit To Main Menu
+"
+
 [connection signal="pressed" from="UI/MainMenu/CenterContainer/HBoxContainer/Button" to="." method="_on_new_game"]
+[connection signal="pressed" from="UI/PauseMenu/CenterContainer/HBoxContainer2/ResumeButton" to="." method="_on_pause_menu_resume"]
+[connection signal="pressed" from="UI/PauseMenu/CenterContainer/HBoxContainer2/Restart Level" to="." method="_on_pause_menu_reset_level"]
+[connection signal="pressed" from="UI/PauseMenu/CenterContainer/HBoxContainer2/QuitToMainMenu" to="." method="_on_pause_menu_exit_to_main_menu"]

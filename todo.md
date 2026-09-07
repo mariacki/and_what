@@ -14,9 +14,10 @@
   - [x] Level Finish Visuals
   - [x] Level Manager
 - [x] Main Menu 
-- [ ] Pause Menu
-  - [ ] Exit to main menu
-  - [ ] Reset level 
+- [x] Pause Menu
+  - [x] Exit to main menu
+  - [x] Reset level 
+- [x] Death zone
 - [ ] Implement push
 - [ ] Implement swimming
   - [ ] Create pool element
@@ -26,16 +27,16 @@
 - [ ] Tutorial 3 - skill chainging
 - [ ] Polish:
   - [ ] Add sounds
-    - [ ] Walking
-    - [ ] Finishing level 
-    - [ ] Picking the skills
+	- [ ] Walking
+	- [ ] Finishing level 
+	- [ ] Picking the skills
   - [ ] Level transitions
-    
+	
 - [ ] Publish the demo
 
 
 ### Ideas :
-- [ ] Lifs for skills
+- [ ] Lifts for skills
 - [ ] Selecting target interactive object when overlapping
 - [ ] Moving platforms
 - [ ] Lowering and raising the ropes

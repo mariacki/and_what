@@ -12,3 +12,7 @@ func physics_process(player: Player, _delta: float) -> void:
 
 	if player.is_on_floor():
 		player.state_machine.switch_state(PlayerWalking, player)
+
+	for area in player.detection_area.get_overlapping_areas():
+		if area.is_in_group(Player.GROUP_DEATH_ZONE):
+			EventBus.player_killed.emit()

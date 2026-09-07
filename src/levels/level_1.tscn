@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/transport/ladder.tscn" id="5_2y5yt"]
 [ext_resource type="PackedScene" uid="uid://vpfr0p6r8t53" path="res://src/exit/exit.tscn" id="6_fcfvj"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3hcq"]
+size = Vector2(1239.5, 57)
+
 [node name="Level1" type="Node2D" unique_id=1286791302]
 
 [node name="Platform3" parent="." unique_id=661368424 instance=ExtResource("2_pa8r4")]
@@ -21,11 +24,6 @@ provides = 3
 position = Vector2(227, 279)
 requires = 0
 provides = 1
-
-[node name="SkillCard2" parent="." unique_id=504712972 instance=ExtResource("3_15mv3")]
-position = Vector2(510, 279)
-requires = 3
-provides = 2
 
 [node name="Platform9" parent="." unique_id=655066593 instance=ExtResource("2_pa8r4")]
 position = Vector2(664, 224)
@@ -74,3 +72,9 @@ number_of_segments = 3
 
 [node name="Exit" parent="." unique_id=502641085 instance=ExtResource("6_fcfvj")]
 position = Vector2(-144, 208)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=951831275 groups=["death_zone"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2112596050]
+position = Vector2(284.25, 393)
+shape = SubResource("RectangleShape2D_y3hcq")

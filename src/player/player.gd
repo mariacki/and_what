@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
+const GROUP_DEATH_ZONE = "death_zone"
 
 @onready var visuals: PlayerVisuals = %Visuals
 @export var arrow: Node2D
