@@ -13,15 +13,26 @@
 - [x] Implement level finishing 
   - [x] Level Finish Visuals
   - [x] Level Manager
-- [ ] Main Menu 
+- [x] Main Menu 
 - [ ] Pause Menu
   - [ ] Exit to main menu
   - [ ] Reset level 
+- [ ] Implement push
+- [ ] Implement swimming
+  - [ ] Create pool element
+  - [ ] Create swimming state for player
 - [ ] Tutorial 1 - single skill
 - [ ] Tutorial 2 - skill replacement
 - [ ] Tutorial 3 - skill chainging
-- [ ] Implement push
-- [ ] Implement swimming
+- [ ] Polish:
+  - [ ] Add sounds
+    - [ ] Walking
+    - [ ] Finishing level 
+    - [ ] Picking the skills
+  - [ ] Level transitions
+    
+- [ ] Publish the demo
+
 
 ### Ideas :
 - [ ] Lifs for skills

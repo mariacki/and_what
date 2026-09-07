@@ -5,10 +5,26 @@ class_name Game extends Node2D
 var _current_level_idx: int = 0
 var _current_level: Node2D
 
+@onready var _main_menu: CanvasLayer = %MainMenu
+@onready var _gameplay_overlay: CanvasLayer = %GameplayOverlay
+
 func _ready() -> void:
 	EventBus.level_exit_reached.connect(_on_level_exit_reached)
 
+func _on_new_game() -> void:
 	_load_level()
+	_hide_main_menu()
+	_show_gameplay_overlay()
+
+
+func _hide_main_menu() -> void:
+	_main_menu.process_mode = Node.PROCESS_MODE_DISABLED
+	_main_menu.visible = false
+
+
+func _show_gameplay_overlay() -> void:
+	_gameplay_overlay.process_mode = Node.PROCESS_MODE_ALWAYS
+	_gameplay_overlay.visible = true
 
 
 func _on_level_exit_reached() -> void:
