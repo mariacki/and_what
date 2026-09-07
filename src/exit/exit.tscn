@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://vpfr0p6r8t53"]
+
+[ext_resource type="Script" uid="uid://boqdsygbbffee" path="res://src/exit/exit.gd" id="1_47wko"]
+[ext_resource type="Texture2D" uid="uid://df0rl4kg4r46u" path="res://texture/exit.png" id="1_mstvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3hcq"]
+size = Vector2(30, 32)
+
+[node name="Exit" type="Area2D" unique_id=502641085]
+script = ExtResource("1_47wko")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1547510811]
+texture_filter = 1
+texture = ExtResource("1_mstvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=479601447]
+shape = SubResource("RectangleShape2D_y3hcq")

@@ -35,6 +35,10 @@ func _handle_interactions(player: Player) -> void:
 			_handle_edge(player, interactive)
 			return
 
+		if interactive is Exit:
+			_handle_exit(player)
+			return
+
 
 func _handle_skill_card(player: Player, card: SkillCard) -> void:
 	if not _inventory_can_place_card(player, card):
@@ -66,6 +70,7 @@ func _handle_edge(player: Player, edge: Edge) -> void:
 
 	player.state_machine.switch_state(PlayerInTransport, player)
 
+
 func _handle_transport_point(player: Player, transport_point: TransportPoint) -> void:
 	if not player.has_skill(transport_point.required_skill):
 		return
@@ -81,6 +86,7 @@ func _handle_transport_point(player: Player, transport_point: TransportPoint) ->
 
 	player.state_machine.switch_state(PlayerInTransport, player)
 
+
 func _inventory_can_place_card(player: Player, card: SkillCard) -> bool:
 	if not card.visible:
 		return false
@@ -94,6 +100,7 @@ func _inventory_can_place_card(player: Player, card: SkillCard) -> bool:
 	var last_skill = player.skills[player.skills.size() - 1]
 	return last_skill.provides == card.requires
 
+
 func _inventory_place_card(player: Player, card: SkillCard) -> void:
 	if card.requires == SkillCard.Skill.NOTHING:
 		for skill in player.skills:
@@ -104,18 +111,25 @@ func _inventory_place_card(player: Player, card: SkillCard) -> void:
 		player.skills.append(card)
 
 	card.visible = false
-	player.skills_updated.emit(player.skills)
+
+	EventBus.skills_updated.emit(player.skills)
+
+
+func _handle_exit(_player: Player) -> void:
+	EventBus.level_exit_reached.emit()
 
 
 func arrow_point_at(player: Player, position: Vector2) -> void:
 	player.arrow.show()
 	player.arrow.look_at(position)
 
+
 func arrow_show_jump(player: Player, edge: Edge) -> void:
 	player.arrow.show()
 	player.arrow.position.x += edge.jump_direction.x * player.jump_length
 	player.arrow.position.y -= Units.UNIT
 	player.arrow.rotation_degrees = 90
+
 
 func arrow_reset(player: Player) -> void:
 	player.arrow.hide()

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://oll3sl06v0lv" path="res://src/skill_card/skill_card.tscn" id="3_ne2mo"]
 [ext_resource type="PackedScene" uid="uid://cuemnvwx21fxe" path="res://src/player/player.tscn" id="4_6cvei"]
 [ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/transport/ladder.tscn" id="5_que50"]
-[ext_resource type="Script" uid="uid://glcpviwhb7o5" path="res://src/overlay.gd" id="6_hey2k"]
+[ext_resource type="PackedScene" uid="uid://vpfr0p6r8t53" path="res://src/exit/exit.tscn" id="7_y0kc7"]
 
 [node name="Game" type="Node2D" unique_id=1286791302]
 
@@ -97,7 +97,7 @@ position = Vector2(480, 275)
 number_of_segments = 7
 
 [node name="Platform18" parent="." unique_id=1515763058 instance=ExtResource("2_y0kc7")]
-position = Vector2(703, 208)
+position = Vector2(717, 147)
 number_of_segments = 7
 
 [node name="Platform14" parent="." unique_id=1435265002 instance=ExtResource("2_y0kc7")]
@@ -144,26 +144,6 @@ number_of_segments = 7
 position = Vector2(880, -213)
 number_of_segments = 29
 
-[node name="Ui" type="CanvasLayer" parent="." unique_id=1836440554]
-script = ExtResource("6_hey2k")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui" unique_id=929796039]
-unique_name_in_owner = true
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 89.0
-offset_bottom = 202.0
-
-[node name="Label" type="Label" parent="Ui/VBoxContainer" unique_id=429055467]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.14767182, 0.14767179, 0.14767179, 1)
-theme_override_font_sizes/font_size = 7
-text = "Skills:"
-
-[node name="Container" type="VBoxContainer" parent="Ui/VBoxContainer" unique_id=1241084695]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="Rope" parent="." unique_id=1680434599 instance=ExtResource("1_wo48x")]
 position = Vector2(347, 133)
 number_of_segments = 7
@@ -180,4 +160,5 @@ number_of_segments = 6
 position = Vector2(193, 28)
 number_of_segments = 19
 
-[connection signal="skills_updated" from="Player" to="Ui" method="skills_updated"]
+[node name="Exit" parent="." unique_id=502641085 instance=ExtResource("7_y0kc7")]
+position = Vector2(541, 251)

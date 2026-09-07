@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cqv2jfcommjlw"]
+
+[ext_resource type="Script" uid="uid://duyq0nfq330a" path="res://src/game/game.gd" id="1_l80un"]
+[ext_resource type="PackedScene" uid="uid://crureb8tk77sq" path="res://src/game/overlay.tscn" id="1_qnjlk"]
+[ext_resource type="PackedScene" uid="uid://yicge48108e0" path="res://scenes/level_1.tscn" id="2_xptat"]
+[ext_resource type="PackedScene" uid="uid://dfyojkn36aeup" path="res://scenes/level_2.tscn" id="3_yarin"]
+
+[node name="Game" type="Node2D" unique_id=1857218008]
+script = ExtResource("1_l80un")
+_levels = Array[PackedScene]([ExtResource("2_xptat"), ExtResource("3_yarin")])
+
+[node name="LevelContainer" type="Node2D" parent="." unique_id=625210580]
+unique_name_in_owner = true
+
+[node name="UI" type="Node2D" parent="." unique_id=1088013722]
+
+[node name="SkillsOverlay" parent="UI" unique_id=1656064225 instance=ExtResource("1_qnjlk")]

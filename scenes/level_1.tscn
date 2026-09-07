@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://oll3sl06v0lv" path="res://src/skill_card/skill_card.tscn" id="3_15mv3"]
 [ext_resource type="PackedScene" uid="uid://cuemnvwx21fxe" path="res://src/player/player.tscn" id="4_e3sih"]
 [ext_resource type="PackedScene" uid="uid://b27xalgvh432k" path="res://src/transport/ladder.tscn" id="5_2y5yt"]
-[ext_resource type="Script" uid="uid://glcpviwhb7o5" path="res://src/overlay.gd" id="6_2os1m"]
+[ext_resource type="PackedScene" uid="uid://vpfr0p6r8t53" path="res://src/exit/exit.tscn" id="6_fcfvj"]
 
-[node name="Game" type="Node2D" unique_id=1286791302]
+[node name="Level1" type="Node2D" unique_id=1286791302]
 
 [node name="Platform3" parent="." unique_id=661368424 instance=ExtResource("2_pa8r4")]
 position = Vector2(184, 304)
@@ -72,22 +72,5 @@ number_of_segments = 6
 position = Vector2(-48, 232)
 number_of_segments = 3
 
-[node name="Ui" type="CanvasLayer" parent="." unique_id=1836440554]
-script = ExtResource("6_2os1m")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui" unique_id=929796039]
-unique_name_in_owner = true
-offset_right = 88.0
-offset_bottom = 200.0
-
-[node name="Label" type="Label" parent="Ui/VBoxContainer" unique_id=429055467]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.14767182, 0.14767179, 0.14767179, 1)
-theme_override_font_sizes/font_size = 7
-text = "Skills:"
-
-[node name="Container" type="VBoxContainer" parent="Ui/VBoxContainer" unique_id=1241084695]
-unique_name_in_owner = true
-layout_mode = 2
-
-[connection signal="skills_updated" from="Player" to="Ui" method="skills_updated"]
+[node name="Exit" parent="." unique_id=502641085 instance=ExtResource("6_fcfvj")]
+position = Vector2(-144, 208)

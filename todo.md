@@ -10,8 +10,8 @@
   - [x] Change the way for detecting object to Player instpection
   - [x] Move the animation related code to animations component
 - [x] Add ropes 
-- [ ] Implement level finish point 
-  - [ ] Level Finish Visuals
+- [ ] Implement level finishing 
+  - [x] Level Finish Visuals
   - [ ] Level Manager
   - [ ] Level Reset
 - [ ] Main Menu 

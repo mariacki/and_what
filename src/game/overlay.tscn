@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://crureb8tk77sq"]
+
+[ext_resource type="Script" uid="uid://glcpviwhb7o5" path="res://src/overlay.gd" id="1_eifxm"]
+
+[node name="Ui" type="CanvasLayer" unique_id=1656064225]
+script = ExtResource("1_eifxm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=996128471]
+unique_name_in_owner = true
+offset_right = 88.0
+offset_bottom = 200.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=737945540]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14767182, 0.14767179, 0.14767179, 1)
+theme_override_font_sizes/font_size = 7
+text = "Skills:"
+
+[node name="Container" type="VBoxContainer" parent="VBoxContainer" unique_id=489271727]
+unique_name_in_owner = true
+layout_mode = 2

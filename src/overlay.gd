@@ -2,7 +2,10 @@ extends CanvasLayer
 
 @onready var item_list: Container = %Container
 
-func skills_updated(skills: Array[SkillCard]):
+func _ready() -> void:
+	EventBus.skills_updated.connect(_on_skills_updated)
+
+func _on_skills_updated(skills: Array[SkillCard]):
 	for child in item_list.get_children():
 		child.queue_free()
 

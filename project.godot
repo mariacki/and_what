@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="and-what"
-run/main_scene="res://scenes/level_1.tscn"
+run/main_scene="uid://cqv2jfcommjlw"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+EventBus="*uid://cw6r4kcbra3f"
 
 [display]
 
