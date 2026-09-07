@@ -31,3 +31,7 @@ func _update_level_idx() -> void:
 		return
 
 	_current_level_idx += 1
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("reset"):
+		_load_level()

@@ -10,11 +10,13 @@
   - [x] Change the way for detecting object to Player instpection
   - [x] Move the animation related code to animations component
 - [x] Add ropes 
-- [ ] Implement level finishing 
+- [x] Implement level finishing 
   - [x] Level Finish Visuals
-  - [ ] Level Manager
-  - [ ] Level Reset
+  - [x] Level Manager
 - [ ] Main Menu 
+- [ ] Pause Menu
+  - [ ] Exit to main menu
+  - [ ] Reset level 
 - [ ] Tutorial 1 - single skill
 - [ ] Tutorial 2 - skill replacement
 - [ ] Tutorial 3 - skill chainging
